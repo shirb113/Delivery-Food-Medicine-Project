@@ -1,0 +1,35 @@
+
+.chartSeperator{
+ 
+    border-left-style: dotted;
+    border-color: cadetblue;
+    border-width: 4px; 
+ 
+
+}
+
+.addToPieChart{
+    position: absolute;  height: auto; left: 10px;  margin-left: 16.8984px; max-width: calc(100% - 26.8984px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    bottom: 22px;
+}
+    
+
+
+.ul-add{
+    padding: 0px; margin: 0px; text-align: left;
+}
+
+.liAdd{
+    display: inline-block; margin-right: 10px
+}
+
+.svgAdd{
+    display: inline-block; vertical-align: middle; margin-right: 4px;
+}
+
+.spanAdd{
+    color: rgb(0, 153, 153);
+}

@@ -1,0 +1,37 @@
+.post_card {
+  border-style: double;
+  /* border-color: #3bb6b1; */
+  border-width: 18px;
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    direction: rtl;
+    text-align: center;
+    margin: 31px;
+    filter: drop-shadow(2px 4px 6px black);
+
+ }
+
+ /* Fake image */
+.fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+  }
+
+  h5{
+    font-weight: bold;
+    font-size: 28px;
+    /* margin: 31px; */
+    /* margin-bottom: 31px;
+    margin-top: 15px; */
+
+  }
+
+  h2{
+    font-size: 4rem;
+    color: #3bb6b1;
+    font-weight: 700;
+    margin-bottom: 31px;
+    margin-top: 31px;
+  }

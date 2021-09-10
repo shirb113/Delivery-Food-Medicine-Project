@@ -1,0 +1,61 @@
+[{
+  "_id": {
+    "$oid": "60fe914f908df02ea0e1d4df"
+  },
+  "Active": true,
+  "type": "עובד",
+  "id": "208994535",
+  "fullName": "אלכס כהן",
+  "userName": "Alex",
+  "password": "12121212",
+  "email": "alex@gmail.com",
+  "phone": "050-4736633",
+  "address": "ירושלים עזה 18",
+  "image": "/assets/images/avatar2.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60fe92be04f5071030f5d6e5"
+  },
+  "Active": true,
+  "type": "עובד",
+  "id": "203447557",
+  "fullName": "טל מרום",
+  "userName": "Tal",
+  "password": "34343434",
+  "email": "tal@gmail.com",
+  "phone": "050-4432212",
+  "address": "ירושלים הנביאים 45",
+  "image": "/assets/images/avatar2.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60fe92be04f5071030f5d6e7"
+  },
+  "Active": true,
+  "type": "עובד",
+  "id": "201001044",
+  "fullName": "דניאל יצחקי",
+  "userName": "Daniel",
+  "password": "88778877",
+  "email": "daniel@gmail.com",
+  "phone": "050-3338212",
+  "address": "ירושלים גלבר 20",
+  "image": "/assets/images/avatar7.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60fe92be04f5071030f5d6e6"
+  },
+  "Active": true,
+  "type": "מנהל",
+  "id": "20432129",
+  "fullName": "אריאלה יחזקאל",
+  "userName": "Ariela",
+  "password": "99999999",
+  "email": "ariela@gmail.com",
+  "phone": "050-4711133",
+  "address": "ירושלים חגי 22",
+  "image": "/assets/images/avatar3.png",
+  "__v": 0
+}]

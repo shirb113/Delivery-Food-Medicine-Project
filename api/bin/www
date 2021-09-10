@@ -1,0 +1,147 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+// var babel = require('@babel/core')
+var app = require('../app');
+var debug = require('debug')('api:server');
+var http = require('http');
+const User = require('../models')("users");
+const ChatMSG = require('../models')("chatMsg");
+
+//const PORT = 8080;
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '9000');
+
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+// const io = require("socket.io")(9000, {
+//   wsEngine: require("eiows").Server
+// });
+const STATIC_CHANNELS = ['global_notifications', 'global_chat'];
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port, () => console.log(`listening on :${port}`));
+server.on('error', onError);
+server.on('listening', onListening);
+
+
+/**
+ * Listen on Socket.io
+ */
+
+const io = require('socket.io')(server, {
+  cors: { origin: "*" }
+});
+
+// module.exports = io
+
+
+// let POSSIBLE_USERS;
+// io.use((socket, next) => {
+//   User.REQUEST().then(list => {
+//     POSSIBLE_USERS = list.map(user => { return { [user.userName]: user.fullName } })
+//     socket.users = POSSIBLE_USERS
+//     console.log(POSSIBLE_USERS)
+
+//   }).catch((msg) => { })
+//   const username = socket.handshake.auth.username;
+//   if (username) {
+//     socket.username = username;
+//     console.log('**********USERNAME IS: ', username)
+//     next();
+//   }
+//   //CHECKS FOR USER IN DB
+// });
+io.on('connection', (socket) => { /* socket object may be used to send specific messages to the new connected client */
+  const CONNECTED_USERS = [];
+
+  socket.on("private_message", ({ from, to, msg, date, uId }) => {
+    console.log('private msg: ', { from, to, msg, date, uId });
+    io.emit("private_message", { from, to, msg, date, uId });
+    ChatMSG.CREATE([from, to, msg, date, uId])
+    // socket.to(to).emit("private message", {
+    //   message, date,
+    //   from, to
+    // });
+
+  })
+  socket.on("delete_msg", ({ }) => {
+    console.log('delete_msg');
+    io.emit("delete_msg");
+  })
+})
+
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
